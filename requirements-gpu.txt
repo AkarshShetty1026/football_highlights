@@ -1,0 +1,6 @@
+# Optional: install this in addition to requirements.txt if you have an NVIDIA
+# GPU. It provides the CUDA 12 cuBLAS/cuDNN runtime DLLs faster-whisper's CUDA
+# backend needs on Windows (Linux wheels bundle equivalents automatically).
+# Skip this file entirely on CPU-only machines -- it's a ~1.3GB download.
+nvidia-cublas-cu12
+nvidia-cudnn-cu12

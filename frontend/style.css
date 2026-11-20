@@ -1,0 +1,275 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f1115;
+  --card: #1a1d24;
+  --border: #2a2e37;
+  --text: #e7e9ee;
+  --muted: #9aa1ae;
+  --accent: #4ade80;
+  --accent-dark: #22c55e;
+  --danger: #f87171;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --border: #e1e4e9;
+    --text: #1a1d24;
+    --muted: #5b6270;
+    --accent: #16a34a;
+    --accent-dark: #15803d;
+    --danger: #dc2626;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Burgundy (was indigo, originally pitch-green): an at-a-glance signal of
+     which build is live. This one has automatic scoreboard location,
+     resolution-independent regions, and job resume. */
+  background: radial-gradient(circle at top, #7b2d4d 0%, #3f1527 55%, #1e0a12 100%);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+}
+
+header h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.6rem;
+  color: #fff4f8;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+header .sub {
+  margin: 0 0 1.75rem;
+  color: #f0d4de;
+  line-height: 1.4;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.card.hidden { display: none; }
+
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 2rem 1rem;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.dropzone.drag-over {
+  border-color: var(--accent);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.dropzone p { margin: 0; color: var(--muted); }
+
+.file-name {
+  margin-top: 0.5rem !important;
+  color: var(--text) !important;
+  font-weight: 600;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.field span small { color: var(--muted); font-weight: normal; }
+
+.field input, .field select {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+}
+
+.field input[type="range"] { padding: 0; }
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #06210f;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button[type="submit"]:disabled {
+  background: var(--border);
+  color: var(--muted);
+  cursor: not-allowed;
+}
+
+button[type="submit"]:not(:disabled):hover { background: var(--accent-dark); }
+
+.progress-bar {
+  height: 10px;
+  border-radius: 6px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.detail {
+  color: var(--muted);
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+}
+
+.card.error { border-color: var(--danger); }
+.card.error h2 { color: var(--danger); margin-top: 0; }
+
+#result-video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #06210f;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.index {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.index.hidden { display: none; }
+
+.index h3 {
+  margin: 0 0 0.6rem;
+  font-size: 1rem;
+}
+
+.index h3 small {
+  color: var(--muted);
+  font-weight: normal;
+  font-size: 0.8rem;
+  margin-left: 0.4rem;
+}
+
+.chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 18rem;
+  overflow-y: auto;
+}
+
+.chapter-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.6rem;
+  border: none;
+  border-left: 3px solid var(--border);
+  border-radius: 0 6px 6px 0;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+
+.chapter-btn:hover { background: rgba(127, 127, 127, 0.12); }
+
+.chapter-time {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.85rem;
+  min-width: 3.2rem;
+}
+
+.chapter-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.chapter-label { font-weight: 600; font-size: 0.9rem; }
+
+.chapter-match {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.chapter-reason {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+/* Category stripe, so goals/fouls/whistles are scannable at a glance. */
+.cat-goal    .chapter-btn { border-left-color: var(--accent); }
+.cat-foul    .chapter-btn { border-left-color: #fbbf24; }
+.cat-half_time .chapter-btn,
+.cat-full_time .chapter-btn { border-left-color: #60a5fa; }
+.cat-other   .chapter-btn { border-left-color: var(--muted); }

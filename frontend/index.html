@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Football Highlight Generator</title>
+<link rel="stylesheet" href="/static/style.css?v=20260918" />
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>⚽ Football Highlight Generator</h1>
+      <p class="sub">Upload a full match recording. It transcribes the commentary locally, reads goals off the scoreboard, and cuts a highlight reel indexed by goals, fouls, half time and full time.</p>
+    </header>
+
+    <section id="upload-card" class="card">
+      <form id="upload-form">
+        <div id="dropzone" class="dropzone">
+          <input type="file" id="file-input" accept=".mp4,.mkv,.mov,.avi,.ts,.webm,.flv,.m4v" hidden />
+          <p id="dropzone-text">Drag &amp; drop a match video here, or click to choose a file</p>
+          <p id="file-name" class="file-name"></p>
+        </div>
+
+        <div class="settings">
+          <label class="field">
+            <span>Target highlight length (minutes)</span>
+            <input type="number" id="target-minutes" value="8" min="1" max="30" step="0.5" />
+          </label>
+
+          <label class="field">
+            <span>Sensitivity <small>(higher = more/looser highlights)</small></span>
+            <input type="range" id="sensitivity" min="0" max="1" step="0.05" value="0.5" />
+            <output id="sensitivity-out">0.50</output>
+          </label>
+
+          <label class="field">
+            <span>Transcription model <small>(bigger = slower, more accurate)</small></span>
+            <select id="model-size">
+              <option value="tiny">tiny (fastest)</option>
+              <option value="base">base</option>
+              <option value="small">small (fast, least accurate)</option>
+              <option value="medium">medium</option>
+              <option value="large-v3" selected>large-v3 (recommended)</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Teams &amp; players <small>(optional — helps spell names correctly)</small></span>
+            <input type="text" id="hotwords" placeholder="e.g. Manchester City, Liverpool, Haaland, Alexander-Arnold, Szoboszlai" />
+          </label>
+        </div>
+
+        <button type="submit" id="submit-btn" disabled>Generate Highlights</button>
+      </form>
+    </section>
+
+    <section id="progress-card" class="card hidden">
+      <h2 id="progress-title">Uploading&hellip;</h2>
+      <div class="progress-bar">
+        <div id="progress-fill" class="progress-fill"></div>
+      </div>
+      <p id="progress-detail" class="detail"></p>
+    </section>
+
+    <section id="error-card" class="card error hidden">
+      <h2>Something went wrong</h2>
+      <p id="error-detail"></p>
+    </section>
+
+    <section id="result-card" class="card hidden">
+      <h2>Highlight reel ready 🎉</h2>
+      <video id="result-video" controls></video>
+      <p id="result-stats" class="detail"></p>
+
+      <section id="index-section" class="index hidden">
+        <h3>Index <small id="index-summary"></small></h3>
+        <ol id="chapter-list" class="chapter-list"></ol>
+      </section>
+
+      <div class="actions">
+        <a id="download-video" class="btn" download="highlights.mp4">Download video</a>
+        <a id="download-transcript" class="btn secondary" download="transcript.txt">Download transcript</a>
+        <a id="download-chapters" class="btn secondary" download="chapters.json">Download index</a>
+        <button id="reset-btn" class="btn secondary" type="button">Process another match</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js?v=20260918"></script>
+</body>
+</html>
