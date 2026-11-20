@@ -1,0 +1,6 @@
+.env
+venv/
+data/jobs/
+data/server.log
+__pycache__/
+*.pyc
